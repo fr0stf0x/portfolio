@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
 import React, { useEffect, useRef } from 'react';
 
-import { gsap } from 'gsap';
 import Image from 'next/image';
 
 import avatar from '@/public/assets/images/avatar.png';
@@ -69,26 +68,7 @@ const Introduce = () => {
     }, moveTransitionSpeed);
   }
 
-  function cursorMagic(evt: MouseEvent) {
-    const mouseX = evt.clientX;
-    const mouseY = evt.clientY;
-
-    gsap.set('.cursor', {
-      x: mouseX,
-      y: mouseY,
-    });
-
-    gsap.to('.shape', {
-      x: mouseX,
-      y: mouseY,
-      stagger: -0.1,
-    });
-  }
-
   useEffect(() => {
-    // custom cursor
-    document.body.addEventListener('mousemove', cursorMagic);
-
     // introduce
     flipUpMask();
 
@@ -96,7 +76,6 @@ const Introduce = () => {
     bouncingBoxes();
 
     return () => {
-      document.body.removeEventListener('mousemove', cursorMagic);
       clearInterval(flipUpInterval.current);
       clearInterval(bouncingBoxInterval.current);
     };
@@ -115,17 +94,11 @@ const Introduce = () => {
           </div>
         </div>
         <div className="content w-full space-y-6 pt-5 font-sans md:w-1/2 md:pt-24 lg:w-1/2">
-          {/* <div className="shapes">
-            <div className="shape shape-1" />
-            <div className="shape shape-2" />
-            <div className="shape shape-3" />
-          </div> */}
-
           <h2 className="relative z-10 space-y-5 text-5xl font-semibold text-slate-700 md:text-6xl lg:text-6xl">
             <div className="w-max rounded-xl bg-neutral py-1 px-3 text-3xl text-primary">
               Hi there!
             </div>
-            <div className="">I am Tang Xuan Thao</div>
+            <div className="text-neutral">I am Tang Xuan Thao</div>
           </h2>
           <h2 className="relative z-10">
             <div className="mask text-5xl font-semibold">
@@ -134,7 +107,7 @@ const Introduce = () => {
               <span>a learner.</span>
             </div>
           </h2>
-          <div className="text-xl text-gray-700">
+          <div className="text-xl text-neutral">
             <p>
               Full-stack web developer with 3+ years of well-rounded experience
               in building web applications.
