@@ -68,9 +68,11 @@ const Header = () => {
       <div className="hidden flex-none lg:block">
         <ul className="menu menu-horizontal">
           <li>
-            <Button className="top-menu-link block py-2" onClick={toggleTheme}>
-              Change theme
-            </Button>
+            <a className="top-menu-link">
+              <Button className="block py-2" onClick={toggleTheme}>
+                {theme === 'light' ? 'Dark' : 'Light'}
+              </Button>
+            </a>
           </li>
           <li>
             <NavLink className="top-menu-link rounded py-0" href="/">
@@ -80,7 +82,10 @@ const Header = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink className="top-menu-link rounded py-0" href="/projects">
+            <NavLink
+              className="top-menu-link rounded py-0"
+              href="https://fr0stf0x.github.io"
+            >
               <Button as="a" className="block py-2">
                 My works
               </Button>
