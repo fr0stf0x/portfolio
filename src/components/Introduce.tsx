@@ -83,9 +83,12 @@ const Introduce = () => {
 
   return (
     <>
-      <div className="container relative z-10 mx-auto flex flex-row-reverse flex-wrap px-6 md:flex-nowrap md:px-8 lg:px-24">
+      <div className="container relative z-10 mx-auto mb-5 flex flex-row-reverse flex-wrap px-6 md:flex-nowrap md:px-8 lg:px-24">
         <div className="relative flex w-full items-center md:w-1/2 lg:w-1/2">
-          <Image src={avatar} className="relative z-10 h-auto w-full" />
+          <Image
+            src={avatar}
+            className="make-cursor-small relative z-10 h-auto w-full"
+          />
           <div className="blob-wrap blob-wrap-1 text-2xl">
             <div className="blob"></div>
           </div>
@@ -115,15 +118,15 @@ const Introduce = () => {
           </div>
           <div className="space-y-2">
             <img
-              className="max-w-full"
+              className="make-cursor-small max-w-full"
               src="https://skillicons.dev/icons?i=vscode,js,ts,react,tailwind"
             />
             <img
-              className="max-w-full"
+              className="make-cursor-small max-w-full"
               src="https://skillicons.dev/icons?i=nodejs,mongodb,postgres,redis,graphql"
             />
             <img
-              className="max-w-full"
+              className="make-cursor-small max-w-full"
               src="https://skillicons.dev/icons?i=git,docker,bash,linux,nginx"
             />
           </div>

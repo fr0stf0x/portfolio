@@ -1,23 +1,12 @@
 import React from 'react';
 
-import { useTheme } from 'next-themes';
-
 import Button from '@/components/Button';
+import ThemeSwitcher from '@/components/Switch/ThemeSwitcher';
 
 import Logo from './Logo';
 import NavLink from './NavLink';
 
 const Header = () => {
-  const { theme, setTheme } = useTheme();
-  const toggleTheme = () => {
-    console.log('OUTPUT ~ toggleTheme ~ theme', theme);
-    if (theme === 'light') {
-      setTheme('dark');
-    } else {
-      setTheme('light');
-    }
-  };
-
   return (
     <nav
       className="
@@ -32,20 +21,22 @@ const Header = () => {
       "
     >
       <div className="flex-1">
-        <NavLink href="/">
-          <a className="flex items-center space-x-3 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0">
-            <div className="relative h-12 w-12 rounded">
-              <Logo />
-            </div>
-            <div className="">
-              <h2
-                tabIndex={0}
-                className="text-sm font-bold text-neutral focus:outline-none"
-              >
-                Fr0stF0x&apos;s Portfolio
-              </h2>
-            </div>
-          </a>
+        <NavLink
+          href="/"
+          className="make-cursor-small flex items-center space-x-3 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0"
+          activeClassName=""
+        >
+          <div className="relative h-12 w-12 rounded">
+            <Logo />
+          </div>
+          <div className="">
+            <h2
+              tabIndex={0}
+              className="text-sm font-bold text-neutral focus:outline-none"
+            >
+              Fr0stF0x&apos;s Portfolio
+            </h2>
+          </div>
         </NavLink>
       </div>
       <div className="flex-none lg:hidden">
@@ -69,16 +60,12 @@ const Header = () => {
         <ul className="menu menu-horizontal">
           <li>
             <a className="top-menu-link">
-              <Button className="block py-2" onClick={toggleTheme}>
-                {theme === 'light' ? 'Dark' : 'Light'}
-              </Button>
+              <ThemeSwitcher />
             </a>
           </li>
           <li>
             <NavLink className="top-menu-link rounded py-0" href="/">
-              <Button as="a" className="block py-2">
-                About me
-              </Button>
+              <Button className="block py-2">About me</Button>
             </NavLink>
           </li>
           <li>
@@ -86,9 +73,7 @@ const Header = () => {
               className="top-menu-link rounded py-0"
               href="https://fr0stf0x.github.io"
             >
-              <Button as="a" className="block py-2">
-                My works
-              </Button>
+              <Button className="block py-2">My works</Button>
             </NavLink>
           </li>
         </ul>

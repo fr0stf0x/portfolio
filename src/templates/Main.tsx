@@ -1,9 +1,12 @@
 import { ReactNode, useEffect } from 'react';
 
-import { gsap } from 'gsap';
+import { useTheme } from 'next-themes';
 import Link from 'next/link';
 
+import useIsMobile from '@/hooks/useIsMobile';
 import Header from '@/layout/Header';
+
+import useMagicCursor from '../hooks/useMagicCursor';
 
 type IMainProps = {
   meta: ReactNode;
@@ -11,30 +14,34 @@ type IMainProps = {
 };
 
 const Main = (props: IMainProps) => {
-  function cursorMagic(evt: MouseEvent) {
-    const mouseX = evt.clientX;
-    const mouseY = evt.clientY;
+  const {
+    startMakeSmall,
+    stopMakeSmall,
+    startTracking,
+    stopTracking,
+    startTransformButton,
+    stopTransformButton,
+  } = useMagicCursor();
 
-    gsap.set('.custom-cursor', {
-      x: mouseX,
-      y: mouseY,
-    });
-
-    gsap.to('.shape', {
-      x: mouseX,
-      y: mouseY,
-      stagger: -0.1,
-    });
-  }
+  const isTouch = useIsMobile();
+  const { theme } = useTheme();
 
   useEffect(() => {
     // custom cursor
-    document.body.addEventListener('mousemove', cursorMagic);
+    if (!isTouch) {
+      startTracking();
+      startMakeSmall();
+      startTransformButton();
+    }
 
     return () => {
-      document.body.removeEventListener('mousemove', cursorMagic);
+      if (!isTouch) {
+        stopTracking();
+        stopMakeSmall();
+        stopTransformButton();
+      }
     };
-  }, []);
+  }, [isTouch, theme]);
 
   return (
     <div className="main">
@@ -65,7 +72,7 @@ const Main = (props: IMainProps) => {
                 </Link>
               </li>
               <li>
-                <Link href="/projects">
+                <Link href="https://fr0stf0x.github.io">
                   <a className="block py-2 hover:text-indigo-600">Projects</a>
                 </Link>
               </li>
@@ -76,4 +83,5 @@ const Main = (props: IMainProps) => {
     </div>
   );
 };
+
 export { Main };

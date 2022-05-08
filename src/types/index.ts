@@ -15,6 +15,6 @@ interface ExoticComponentWithDisplayName<P = unknown>
 
 export type AnyComponent<P = any> =
   | ExoticComponentWithDisplayName<P>
-  | React.ComponentType<P>;
+  | React.ComponentType<React.PropsWithChildren<P>>;
 
 export type KnownWebTarget = keyof JSX.IntrinsicElements | AnyComponent;

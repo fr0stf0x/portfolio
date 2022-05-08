@@ -8,13 +8,15 @@ interface INavLink {
   href: string;
   exact?: boolean;
   className?: string;
+  activeClassName?: string;
 }
 
-const NavLink: FC<INavLink> = ({
+const NavLink: FC<React.PropsWithChildren<INavLink>> = ({
   href,
   exact,
   children,
   className,
+  activeClassName = 'hidden',
   ...props
 }) => {
   const { pathname } = useRouter();
@@ -22,7 +24,10 @@ const NavLink: FC<INavLink> = ({
 
   return (
     <Link href={href}>
-      <a {...props} className={classnames(className, { active: isActive })}>
+      <a
+        {...props}
+        className={classnames(className, { [activeClassName]: isActive })}
+      >
         {children}
       </a>
     </Link>
